@@ -30,7 +30,7 @@ var postcss = require( 'gulp-postcss' )
 var composure = require( 'composure-grid' )
 
 gulp.task( 'stylus', function() {
-  return gulp.src( './lib/composure-grid.styl' )
+  return gulp.src( './styl/main.styl' )
     .pipe( stylus( {
       compress: false,
       use: composure( {

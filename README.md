@@ -40,9 +40,9 @@ gulp.task( 'stylus', function() {
         columnBaseClass: 'col',
       // should columns have padding?
         columnPadding: false,
-      // whether to prefix the column classes (col-tab-1 instead of tab-1)
+      // prefix the column classes (col-tab-1 instead of tab-1)
         columnPrefix: '',
-      // if outputting gutters, do you want to output each individual direction as well?
+      // if outputting gutters, do you want to output each direction as well?
         directions: {
           t: 'top',
           r: 'right',

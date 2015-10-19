@@ -1,0 +1,59 @@
+/**
+ * @description generates the hide/show classes for each breakpoint
+ * @returns classes for hiding/showing
+ */
+compose-display-classes( $display = $display-classes, $overrides = $display-overrides )
+  if $display == true
+
+    .hide
+      display: none
+
+    .show
+      display: block
+
+    if $overrides == true
+      .remove
+        display: none !important
+
+      .reveal
+        display: block !important
+
+    for $b, $breakpoint in $grid-breakpoints
+      $min = $breakpoint['min']
+      $max = $breakpoint['max']
+      $hasMin = typeof( $min ) == 'unit'
+      $hasMax = typeof( $max ) == 'unit'
+      $isMobile = $breakpoint['isMobile']
+
+      if $hasMin == true and $hasMax == true
+        $min = unit( $min, $media-unit )
+        $max = unit( $max, $media-unit )
+        $both = s( '( min-width: %s ) and ( max-width: %s )', $min, $max )
+        @media $both
+          -compose-display-classes-helper( $b, $isMobile )
+      else if $hasMin == true
+        $min = unit( $min, $media-unit )
+        @media ( min-width: $min )
+          -compose-display-classes-helper( $b, $isMobile )
+      else if $hasMax == true
+        $max = unit( $max, $media-unit )
+        @media ( max-width: $max )
+          -compose-display-classes-helper( $b, $isMobile )
+
+
+-compose-display-classes-helper( $prefix, $isMobile )
+  if $prefix == 'mob' and $include-mobile == false
+    return
+  else
+    .{$prefix}-hide
+      display: none
+
+    .{$prefix}-show
+      display: block
+
+    if $overrides == true
+      .{$prefix}-remove
+        display: none !important
+
+      .{$prefix}-reveal
+        display: block !important

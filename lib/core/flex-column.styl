@@ -1,0 +1,89 @@
+/**
+ * @description generates a standard column class
+ * @param {string} [$spacer] are we using padding, or margins in our grid?
+ * @returns rules for column
+ * 1 hotfix for ff flexbox bug
+ */
+compose-flex-column()
+  $amount = unit( $spacer-amount, $spacer-type )
+  min-width: 0 // 1
+  width: 100% // default to 100% on mobile
+
+  if $flexbox-support == true
+    flex: auto
+
+  if $column-padding != false
+    padding: $column-padding
+
+  &.grow-none
+    flex-grow: 0
+
+  // alignment helpers
+  &.self-auto
+    align-self: auto
+
+  &.self-start
+    align-self: flex-start
+
+  &.self-end
+    align-self: flex-end
+
+  &.self-center
+    align-self: center
+
+  &.self-baseline
+    align-self: baseline
+
+  &.self-stretch
+    align-self: stretch
+
+  if $spacer is defined
+    if $spacer-bottom == true
+      {$spacer}-bottom: $amount
+
+    if $mob-plus is defined
+      @media $mob-plus
+        {$spacer}-right: $amount
+
+        if $flexbox-support != true
+          float: left
+
+  &:last-child
+    if $spacer is defined
+      {$spacer}-right: 0
+
+
+// extendable version
+$flex-column
+  $amount = unit( $spacer-amount, $spacer-type )
+  min-width: 0 // 1
+  width: 100%
+
+  if $flexbox-support == true
+    flex: auto
+
+  // alignment helpers
+  &.self-auto
+    align-self: auto
+
+  &.self-start
+    align-self: flex-start
+
+  &.self-end
+    align-self: flex-end
+
+  &.self-center
+    align-self: center
+
+  &.self-baseline
+    align-self: baseline
+
+  &.self-stretch
+    align-self: stretch
+
+  if $spacer-bottom is defined
+    {$spacer}-bottom: $amount
+
+  &:last-child
+    if $spacer is defined
+      {$spacer}-right: 0

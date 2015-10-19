@@ -1,0 +1,14 @@
+/**
+ * @description sets a consistent max-width
+ * @param {unit} [$site-width] site width, in units (px, %, whatever)
+ * @param {unit} [$gutter] mobile spacing on either side
+ * @returns rules for max-widthing a thing
+ */
+compose-site-width( $max = $site-width, $gutter = 50px )
+  width: s( 'calc(100% - (%s * 2))', 20px )
+
+  // need to define mobile plus and other min/max rules
+  if $mob-plus is defined
+    @media $mob-plus
+      max-width: unit( $max, $site-width-type )
+      width: s( 'calc(100% - (%s * 2))', $gutter )

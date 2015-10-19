@@ -1,0 +1,167 @@
+/**
+ * make a thing flexbox
+ */
+compose-flex-box()
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+
+  // change flow of contens
+  &.dir-column
+    flex-direction: column
+
+  &.dir-row
+    flex-direction: row
+
+  &.dir-column-reverse
+    flex-direction: column-reverse
+
+  &.dir-row-reverse
+    flex-direction: row-reverse
+
+  // aligns child elements vertically
+  &.align-start
+    align-items: flex-start
+
+  &.align-end
+    align-items: flex-end
+
+  &.align-baseline
+    align-items: baseline
+
+  &.align-center
+    align-items: center
+
+  &.align-stretch
+    align-items: stretch
+
+  // aligns child ROWS vertically
+  &.align-content-start
+    align-content: flex-start
+
+  &.align-content-end
+    align-content: flex-end
+
+  &.align-content-baseline
+    align-content: baseline
+
+  &.align-content-center
+    align-content: center
+
+  &.align-content-stretch
+    align-content: stretch
+
+  // align child elements horizontally
+  &.just-start
+    justify-content: flex-start
+
+  &.just-end
+    justify-content: flex-end
+
+  &.just-center
+    justify-content: center
+
+  &.just-between
+    justify-content: space-between
+
+  &.just-around
+    justify-content: space-around
+
+  // wrap columns or force fit
+  &.no-wrap
+    flex-wrap: nowrap
+
+  &.wrap
+    flex-wrap: wrap
+
+  &.wrap-reverse
+    flex-wrap: wrap-reverse
+
+  // just handy
+  &.full-height
+    height: 100%
+
+  if $mob-plus is defined
+    @media $mob-plus
+      flex-direction: row
+
+
+$flex-box
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+
+  // change flow of contens
+  &.dir-column
+    flex-direction: column
+
+  &.dir-row
+    flex-direction: row
+
+  &.dir-column-reverse
+    flex-direction: column-reverse
+
+  &.dir-row-reverse
+    flex-direction: row-reverse
+
+  // aligns child elements vertically
+  &.align-start
+    align-items: flex-start
+
+  &.align-end
+    align-items: flex-end
+
+  &.align-baseline
+    align-items: baseline
+
+  &.align-center
+    align-items: center
+
+  &.align-stretch
+    align-items: stretch
+
+  // aligns child ROWS vertically
+  &.align-content-start
+    align-content: flex-start
+
+  &.align-content-end
+    align-content: flex-end
+
+  &.align-content-baseline
+    align-content: baseline
+
+  &.align-content-center
+    align-content: center
+
+  &.align-content-stretch
+    align-content: stretch
+
+  // align child elements horizontally
+  &.just-start
+    justify-content: flex-start
+
+  &.just-end
+    justify-content: flex-end
+
+  &.just-center
+    justify-content: center
+
+  &.just-between
+    justify-content: space-between
+
+  &.just-around
+    justify-content: space-around
+
+  // wrap columns or force fit
+  &.no-wrap
+    flex-wrap: nowrap
+
+  &.wrap
+    flex-wrap: wrap
+
+  &.wrap-reverse
+    flex-wrap: wrap-reverse
+
+  // just handy
+  &.full-height
+    height: 100%

@@ -1,0 +1,110 @@
+/**
+ * @description loops through all columns, outputs grid for all breakpoints
+ * so efficient it hurts
+ * @param {number} [$columns] amount of columns in grid
+ * @param {boolean} [$order] include flexbox re-order classes
+ * @returns classes for grid
+ */
+compose-grid()
+  $has-spacer = false
+
+  -compose-grid-helpers()
+
+  if $spacer == 'margin' and $spacer-type == '%'
+    $has-spacer = true
+
+  if $grid-breakpoints is defined
+    for $b, $breakpoint in $grid-breakpoints
+      $min = $breakpoint['min']
+      $max = $breakpoint['max']
+      $hasMin = typeof( $min ) == 'unit'
+      $hasMax = typeof( $max ) == 'unit'
+      $isMobile = $breakpoint['isMobile']
+
+      if $column-omega == true
+        if $hasMin == true and $hasMax == true
+          $min = unit( $min, $media-unit )
+          $max = unit( $max, $media-unit )
+          $both = s( '( min-width: %s ) and ( max-width: %s )', $min, $max )
+          @media $both
+            -compose-omega( $b )
+        else if $hasMin == true
+          $min = unit( $min, $media-unit )
+          @media ( min-width: $min )
+            -compose-omega( $b )
+        else if $hasMax == true
+          $max = unit( $max, $media-unit )
+          @media ( max-width: $max )
+            -compose-omega( $b )
+
+      for $i in 1..$columns
+        if $hasMin == true and $hasMax == true
+          $min = unit( $min, $media-unit )
+          $max = unit( $max, $media-unit )
+          $both = s( '( min-width: %s ) and ( max-width: %s )', $min, $max )
+          @media $both
+            -compose-columns( $b, $i, $isMobile )
+        else if $hasMin == true
+          $min = unit( $min, $media-unit )
+          @media ( min-width: $min )
+            -compose-columns( $b, $i, $isMobile )
+        else if $hasMax == true
+          $max = unit( $max, $media-unit )
+          @media ( max-width: $max )
+            -compose-columns( $b, $i, $isMobile )
+  else
+    for $i in 1..$columns
+      -compose-columns( $column-prefix, $i, false )
+
+
+// by default, we don't generate mobile specfic classes
+-compose-columns( $prefix, $i, $isMobile = false )
+  if $isMobile == true and $include-mobile == false
+    return
+  else
+    .{$prefix}-{$i}
+      width: get-col-width( $i, $has-spacer )
+
+      if $i == $columns
+        if $spacer == 'margin'
+          margin-right: 0
+        else
+          padding-right: 0
+
+    if $flexbox-order == true
+      .{$prefix}-order-{$i}
+        order: $i
+
+
+// output the base column, row and container classes
+-compose-grid-helpers()
+  .{$column-base}
+    compose-flex-column()
+
+  // normal row without all the flexbox business
+  .row,
+  .flex-row
+    compose-row()
+
+  // center and set max width of site
+  .container
+    compose-container()
+
+  // let my people flow
+  if $flexbox-support == true
+    .flex-box,
+    .flex-row
+      compose-flex-box()
+
+  if $flexbox-order == true
+    for $i in 1..$columns
+      .order-{$i}
+        order: $i
+
+
+-compose-omega( $prefix )
+  .{$prefix}-omega
+    if $spacer == 'margin'
+      margin-right: 0 !important
+    else
+      padding-right: 0 !important

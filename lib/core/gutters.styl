@@ -1,0 +1,142 @@
+$composed-gutters = ()
+
+
+/**
+ * @desc many many many helper classes for all breakpoints
+ *       basically, loop through each direction (t r b l)
+ *       and then loop through each gutter size (sm, med, big, huge)
+ * @returns .{breakpoint}-{property}-{direction}-{size}
+            example: sm-marg-r-big
+ */
+compose-gutters( $dir = 'directions', $responsive = 'responsive' )
+  if $gutters is defined
+    // generate general purpose gutters, but without the media queries
+    if $dir == 'directions' and $responsive != 'responsive'
+      for $k, $v in $gutters
+        $num = sum( $k 1 )
+        $value = unit( $v, 'px' )
+
+        // push to global list, so we can expose
+        push( $composed-gutters, $value )
+
+        .marg-{$num}
+          margin: $value
+
+        .pad-{$num}
+          padding: $value
+
+        for $d-short, $direction in $directions
+          .marg-{$d-short}-{$num}
+            margin-{$direction}: $value
+
+          .pad-{$d-short}-{$num}
+            padding-{$direction}: $value
+
+    // generate general purpose gutters, but without the directions
+    if $dir != 'directions' and $responsive == 'responsive'
+      for $k, $v in $gutters
+        $num = sum( $k 1 )
+        $value = unit( $v, 'px' )
+
+        // push to global list, so we can expose
+        push( $composed-gutters, $value )
+
+        .marg-{$num}
+          margin: $value
+
+        .pad-{$num}
+          padding: $value
+
+        if $grid-breakpoints is defined
+          for $b, $breakpoint in $grid-breakpoints
+            $min = $breakpoint['min']
+            $max = $breakpoint['max']
+            $hasMin = typeof( $min ) == 'unit'
+            $hasMax = typeof( $max ) == 'unit'
+            $isMobile = $breakpoint['isMobile']
+
+            if $hasMin == true and $hasMax == true
+              $min = unit( $min, $media-unit )
+              $max = unit( $max, $media-unit )
+              $both = s( '( min-width: %s ) and ( max-width: %s )', $min, $max )
+              @media $both
+                -compose-gutters( $b, $num, $value, $isMobile )
+            else if $hasMin == true
+              $min = unit( $min, $media-unit )
+              @media ( min-width: $min )
+                -compose-gutters( $b, $num, $value, $isMobile )
+            else if $hasMax == true
+              $max = unit( $max, $media-unit )
+              @media ( max-width: $max )
+                -compose-gutters( $b, $num, $value, $isMobile )
+
+    // generate everything, the default
+    if $dir == 'directions' and $responsive == 'responsive'
+      for $k, $v in $gutters
+        $num = sum( $k 1 ) // coercing $k to a number
+        $value = unit( $v, 'px' )
+
+        // push to global list, so we can expose
+        push( $composed-gutters, $value )
+
+        .marg-{$num}
+          margin: $value
+
+        .pad-{$num}
+          padding: $value
+
+        for $d-short, $direction in $directions
+          .marg-{$d-short}-{$num}
+            margin-{$direction}: $value
+
+          .pad-{$d-short}-{$num}
+            padding-{$direction}: $value
+
+          if $grid-breakpoints is defined
+            for $b, $breakpoint in $grid-breakpoints
+              $min = $breakpoint['min']
+              $max = $breakpoint['max']
+              $hasMin = typeof( $min ) == 'unit'
+              $hasMax = typeof( $max ) == 'unit'
+              $isMobile = $breakpoint['isMobile']
+
+              if $hasMin == true and $hasMax == true
+                $min = unit( $min, $media-unit )
+                $max = unit( $max, $media-unit )
+                $both = s( '( min-width: %s ) and ( max-width: %s )', $min, $max )
+                @media $both
+                  -compose-gutters-with-directions( $b, $num, $value, $isMobile, $d-short, $direction )
+              else if $hasMin == true
+                $min = unit( $min, $media-unit )
+                @media ( min-width: $min )
+                  -compose-gutters-with-directions( $b, $num, $value, $isMobile, $d-short, $direction )
+              else if $hasMax == true
+                $max = unit( $max, $media-unit )
+                @media ( max-width: $max )
+                  -compose-gutters-with-directions( $b, $num, $value, $isMobile, $d-short, $direction )
+
+
+-compose-gutters( $prefix, $num, $value, $isMobile )
+  if $isMobile == true and $includeMobile == false
+    return
+  else
+    $margin = $prefix + '-marg-' + $num
+    .{$margin}
+      margin: $value
+
+    $padding = $prefix + '-pad-' + $num
+    .{$padding}
+      padding: $value
+
+
+-compose-gutters-with-directions( $prefix, $num, $value, $isMobile, $d-short, $direction )
+  if $isMobile == true and $includeMobile == false
+    return
+  else
+    $margin = $prefix + '-marg-' + $d-short + '-' + $num
+    .{$margin}
+      margin-{$direction}: $value
+
+    $padding = $prefix + '-pad-' + $d-short + '-' + $num
+    .{$padding}
+      padding-{$direction}: $value

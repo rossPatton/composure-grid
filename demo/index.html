@@ -1,0 +1,175 @@
+<html>
+<body>
+<head>
+  <link href="../css/composure-grid.css" media="all" rel="stylesheet">
+  <style>
+    .col {
+      background-color: #ccc;
+      height: 25px;
+    }
+    #grid-2 .col {
+      background-color: #aaa;
+    }
+    /* http://meyerweb.com/eric/tools/css/reset/
+       v2.0 | 20110126
+       License: none (public domain)
+    */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section {
+      display: block;
+    }
+    body {
+      line-height: 1;
+    }
+    ol, ul {
+      list-style: none;
+    }
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+      content: '';
+      content: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+  </style>
+</head>
+
+  <section id='grid' class='container flex-box marg-t-3'>
+    <section class='flex-row order-2 tab-order-1'>
+      <div class='flex-row tab-order-6 desk-order-1'>
+        <div class='col tab-6 desk-1'></div>
+        <div class='col tab-6 desk-11'></div>
+      </div>
+
+      <div class='flex-row tab-order-5 desk-order-2'>
+        <div class='col tab-3 desk-2'></div>
+        <div class='col tab-3 desk-10 desk-omega'></div>
+
+        <div class='col tab-3 desk-3 desk-alpha'></div>
+        <div class='col tab-3 desk-9 tab-omega desk-omega'></div>
+      </div>
+
+      <div class='flex-row tab-order-4 desk-order-3'>
+        <div class='col tab-2 desk-4'></div>
+        <div class='col tab-2 desk-8 desk-omega'></div>
+
+        <div class='col tab-2 desk-5 desk-alpha'></div>
+        <div class='col tab-2 desk-7 desk-omega'></div>
+
+        <div class='col tab-2 desk-6 desk-alpha'></div>
+        <div class='col tab-2 desk-6 tab-omega desk-omega'></div>
+      </div>
+
+      <div class='flex-row tab-order-3 desk-order-4'>
+        <div class='col tab-2 desk-7'></div>
+        <div class='col tab-2 desk-5 desk-omega'></div>
+
+        <div class='col tab-2 desk-8 desk-alpha'></div>
+        <div class='col tab-2 desk-4 desk-omega'></div>
+
+        <div class='col tab-2 desk-9 desk-alpha'></div>
+        <div class='col tab-2 desk-3 tab-omega desk-omega'></div>
+      </div>
+
+      <div class='flex-row tab-order-2 desk-order-5'>
+        <div class='col tab-3 desk-10'></div>
+        <div class='col tab-3 desk-2 desk-omega'></div>
+        <div class='col tab-3 desk-11 desk-alpha'></div>
+        <div class='col tab-3 desk-1 tab-omega '></div>
+      </div>
+
+      <div class='row col tab-order-1 desk-12 bg-b-1 desk-order-6 desk-marg-b-3'></div>
+    </section>
+
+    <section id='grid-2' class='flex-row order-1 tab-order-2 marg-t-2 marg-b-3'>
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-11'></div>
+        <div class='col tab-1'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-10'></div>
+        <div class='col tab-2'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-9'></div>
+        <div class='col tab-3'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-8'></div>
+        <div class='col tab-4'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-7'></div>
+        <div class='col tab-5'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-6'></div>
+        <div class='col tab-6'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-5'></div>
+        <div class='col tab-7'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-4'></div>
+        <div class='col tab-8'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-3'></div>
+        <div class='col tab-9'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-2'></div>
+        <div class='col tab-10'></div>
+      </section>
+
+      <section class='flex-row marg-b-1'>
+        <div class='col tab-1'></div>
+        <div class='col tab-11'></div>
+      </section>
+
+      <section class='flex-row marg-b-1 mob-hide'>
+        <div class='col tab-12'></div>
+      </section>
+    </section>
+
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "composure-grid",
+  "version": "1.0.0",
+  "description": "on the fly stylus grid generator",
+  "main": "./lib/composure-grid.js",
+  "keywords": [
+    "stylus",
+    "css",
+    "framework",
+    "grid",
+    "generator",
+    "kitchen sink"
+  ],
+  "author": "Ross Patton",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "lodash": "3.10.1",
+    "stylus": "0.52.4"
+  },
+  "devDependencies": {
+    "css-mqpacker": "4.0.0",
+    "gulp": "3.9.0",
+    "gulp-postcss": "6.0.1",
+    "gulp-stylus": "2.1.0"
+  }
+}

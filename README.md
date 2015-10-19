@@ -13,9 +13,7 @@ get this:
 ![composure-grid](https://cloud.githubusercontent.com/assets/2379901/10570762/4ac2a6bc-75ec-11e5-960f-74199112cdf8.png)
 
 
-pass in a config object, get a different grid
-
-WIP
+pass in a config object, get a different grid. composure-grid makes it easy to add and remove grid functionality as you need it, with lightweight output that won't slow down your site.
 
 
 until I have more time to write some documentation, here's all the possible options with their defaults:

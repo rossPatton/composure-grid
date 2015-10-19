@@ -1,7 +1,4 @@
 # composure
-grid gen via javascript
-
-CAUSE YOU SHOULD COMPOSE THINGS HAHAHAHAHA
 
 
 ![yodawg](https://i.imgflip.com/sig5d.jpg)
@@ -13,9 +10,111 @@ do this:
 
 get this:
 
-![get this](https://cloud.githubusercontent.com/assets/2379901/10447040/8a3c37c4-7135-11e5-86a3-11ab11aaf143.png)
+![composure-grid](https://cloud.githubusercontent.com/assets/2379901/10570762/4ac2a6bc-75ec-11e5-960f-74199112cdf8.png)
 
 
-pass in a config object, get a different framework
+pass in a config object, get a different grid
 
 WIP
+
+
+until I have more time to write some documentation, here's all the possible options with their defaults:
+
+```javascript
+'use strict'
+
+var gulp = require( 'gulp' )
+var stylus = require( 'gulp-stylus' )
+var mq = require( 'css-mqpacker' )
+var postcss = require( 'gulp-postcss' )
+var composure = require( 'composure-grid' )
+
+gulp.task( 'stylus', function() {
+  return gulp.src( './lib/composure-grid.styl' )
+    .pipe( stylus( {
+      compress: false,
+      use: composure( {
+      // how many columns to generate
+        columns: 12,
+      // base column class
+        columnBaseClass: 'col',
+      // should columns have padding?
+        columnPadding: false,
+      // whether to prefix the column classes (col-tab-1 instead of tab-1)
+        columnPrefix: '',
+      // if outputting gutters, do you want to output each individual direction as well?
+        directions: {
+          t: 'top',
+          r: 'right',
+          b: 'bottom',
+          l: 'left',
+        },
+      // hide/show classes for each defined breakpoint
+        displayClasses: true,
+      // remove/reveal classes for each defined breakpoint
+        displayOverrides: false,
+      // by default use a flexbox based grid
+        flexSupport: true,
+      // include re-ordering classes for each breakpoint (order-1, tab-order-2, etc)
+        flexOrder: true,
+      // mobile first grid, 
+      // mark property that you will use as your mobile breakpoint
+        gridBreakpoints: {
+          mob: {
+            max: 767,
+            isMobile: true,
+          },
+          tab: {
+            min: 768,
+          },
+          desk: {
+            min: 1200,
+          },
+        },
+      // margin and padding helper classes
+      // pass in true for default, false for no gutters
+      // values is used to hard code the gutter name and values
+      // base/range/scale is used to generate a range of gutters
+      // the example values object is what
+      // the default base/range/scale combo creates
+        gutters: {
+          base: 10,
+          range: 3,
+          scale: 2,
+          values: {
+            0: 10,
+            1: 20,
+            2: 40,
+          },
+        },
+      // include mobile column classes, default to just one grid on mobile
+        includeMobile: false,
+      // works with gridBreakpoints to designate the unit type of our min/max values
+        mediaUnit: 'px',
+      // include omega classes for zeroing out column spacers
+        omega: true,
+      // the default preset, you don't need to pass this in
+      // the other current option is WIRED
+      // which is the grid used by wired.com
+      // when you change a preset the defaults just change
+      // you can still override them
+        preset: 'simple',
+      // how wide the container class is
+        siteWidth: 80,
+      // should columns have default margin/padding? can be 'margin'|'padding'|false
+        spacer: 'margin',
+      // the amount of spacing to do
+        spacerAmount: 20,
+      // include spacing on the bottom as well
+        spacerBottom: true,
+      // the unit type of the spacer, can be whatever ('px'|'vw'|'rem'|'%' etc)
+        spacerType: 'px',
+      // specifies unit type for siteWidth
+        widthType: '%',
+      } ),
+    } ) )
+    .pipe( postcss( [mq] ) )
+    .pipe( gulp.dest( './css' ) )
+} )
+```
+

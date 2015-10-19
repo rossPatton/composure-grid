@@ -14,8 +14,52 @@ gulp.task( 'stylus', () => {
     .pipe( stylus( {
       compress: false,
       use: composure( {
-        gutters: true,
+        columns: 12,
+        columnBaseClass: 'col',
+        columnPadding: false,
+        columnPrefix: '',
+        directions: {
+          t: 'top',
+          r: 'right',
+          b: 'bottom',
+          l: 'left',
+        },
+        displayClasses: true,
+        displayOverrides: false,
+        flexSupport: true,
+        flexOrder: true,
+        gridBreakpoints: {
+          mob: {
+            max: 767,
+            isMobile: true,
+          },
+          tab: {
+            min: 768,
+          },
+          desk: {
+            min: 1200,
+          },
+        },
+        gutters: {
+          base: 10,
+          range: 3,
+          scale: 2,
+          values: {
+            0: 10,
+            1: 20,
+            2: 40,
+          },
+        },
+        includeMobile: false,
+        mediaUnit: 'px',
+        omega: true,
         preset: 'simple',
+        siteWidth: 80,
+        spacer: 'margin',
+        spacerAmount: 20,
+        spacerBottom: true,
+        spacerType: 'px',
+        widthType: '%',
       } ),
     } ) )
     .pipe( postcss( [mq] ) )

@@ -1,6 +1,6 @@
 {
   "name": "composure-grid",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "on the fly stylus grid generator",
   "main": "./lib/composure-grid.js",
   "keywords": [

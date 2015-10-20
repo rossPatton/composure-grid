@@ -1,5 +1,6 @@
 # composure
 
+##### note, if you used 1.0->1.02 and got an error, it's because i've gotten used to using node 4 and forgot that not everyone is using arrow functions natively yet. update to 1.03 and try again :)
 
 ![yodawg](https://i.imgflip.com/sig5d.jpg)
 
@@ -57,7 +58,7 @@ gulp.task( 'stylus', function() {
         flexSupport: true,
       // include re-ordering classes for each breakpoint (order-1, tab-order-2, etc)
         flexOrder: true,
-      // mobile first grid, 
+      // mobile first grid,
       // mark property that you will use as your mobile breakpoint
         gridBreakpoints: {
           mob: {

@@ -1,6 +1,6 @@
 # composure
 
-##### note, if you used 1.0->1.02 and got an error, it's because i've gotten used to using node 4 and forgot that not everyone is using arrow functions natively yet. update to 1.03 and try again :)
+##### note, if you used 1.0->1.03 and got an error, it's because i've gotten used to using node 4 and forgot that not everyone is using arrow functions/template strings natively yet. update to 1.04 and try again :)
 
 ![yodawg](https://i.imgflip.com/sig5d.jpg)
 

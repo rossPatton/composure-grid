@@ -14,9 +14,7 @@ get this:
 ![composure-grid](https://cloud.githubusercontent.com/assets/2379901/10570762/4ac2a6bc-75ec-11e5-960f-74199112cdf8.png)
 
 
-pass in a config object, get a different grid
-
-WIP
+pass in a config object, get a different grid. composure-grid makes it easy to add and remove grid functionality as you need it, with lightweight output that won't slow down your site.
 
 
 until I have more time to write some documentation, here's all the possible options with their defaults:
@@ -31,7 +29,7 @@ var postcss = require( 'gulp-postcss' )
 var composure = require( 'composure-grid' )
 
 gulp.task( 'stylus', function() {
-  return gulp.src( './lib/composure-grid.styl' )
+  return gulp.src( './styl/main.styl' )
     .pipe( stylus( {
       compress: false,
       use: composure( {
@@ -41,9 +39,9 @@ gulp.task( 'stylus', function() {
         columnBaseClass: 'col',
       // should columns have padding?
         columnPadding: false,
-      // whether to prefix the column classes (col-tab-1 instead of tab-1)
+      // prefix the column classes (col-tab-1 instead of tab-1)
         columnPrefix: '',
-      // if outputting gutters, do you want to output each individual direction as well?
+      // if outputting gutters, do you want to output each direction as well?
         directions: {
           t: 'top',
           r: 'right',

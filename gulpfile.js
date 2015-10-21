@@ -1,18 +1,18 @@
 'use strict'
 
-const gulp = require( 'gulp' )
-const stylus = require( 'gulp-stylus' )
-const mq = require( 'css-mqpacker' )
-const postcss = require( 'gulp-postcss' )
-const composure = require( './lib/composure-grid' )
+var gulp = require( 'gulp' )
+var stylus = require( 'gulp-stylus' )
+var mq = require( 'css-mqpacker' )
+var postcss = require( 'gulp-postcss' )
+var composure = require( './lib/composure-grid' )
 
 /**
  * compiles, autoprefixes, minifies, the stylus
  */
-gulp.task( 'stylus', () => {
+gulp.task( 'stylus', function() {
   return gulp.src( './lib/composure-grid.styl' )
     .pipe( stylus( {
-      compress: false,
+      compress: true,
       use: composure( {
         columns: 12,
         columnBaseClass: 'col',

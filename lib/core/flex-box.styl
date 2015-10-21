@@ -68,10 +68,10 @@ compose-flex-box()
     justify-content: space-around
 
   // wrap columns or force fit
-  &.no-wrap
+  &.no-flex-wrap
     flex-wrap: nowrap
 
-  &.wrap
+  &.flex-wrap
     flex-wrap: wrap
 
   &.wrap-reverse
@@ -84,6 +84,7 @@ compose-flex-box()
   if $mob-plus is defined
     @media $mob-plus
       flex-direction: row
+      flex-wrap: nowrap
 
 
 $flex-box
@@ -153,10 +154,10 @@ $flex-box
     justify-content: space-around
 
   // wrap columns or force fit
-  &.no-wrap
+  &.no-flex-wrap
     flex-wrap: nowrap
 
-  &.wrap
+  &.flex-wrap
     flex-wrap: wrap
 
   &.wrap-reverse

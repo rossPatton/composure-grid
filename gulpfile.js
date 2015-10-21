@@ -56,9 +56,9 @@ gulp.task( 'stylus', () => {
         preset: 'simple',
         siteWidth: 80,
         spacer: 'margin',
-        spacerAmount: 20,
+        spacerAmount: 1,
         spacerBottom: true,
-        spacerType: 'px',
+        spacerType: '%',
         widthType: '%',
       } ),
     } ) )

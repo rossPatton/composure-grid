@@ -20,6 +20,7 @@ compose-grid()
       $hasMin = typeof( $min ) == 'unit'
       $hasMax = typeof( $max ) == 'unit'
       $isMobile = $breakpoint['isMobile']
+      $generic = $b + '-'
 
       if $column-omega == true
         if $hasMin == true and $hasMax == true
@@ -28,14 +29,20 @@ compose-grid()
           $both = s( '( min-width: %s ) and ( max-width: %s )', $min, $max )
           @media $both
             -compose-omega( $b )
+            .col[class^={$generic}]
+              flex-grow: none
         else if $hasMin == true
           $min = unit( $min, $media-unit )
           @media ( min-width: $min )
             -compose-omega( $b )
+            .col[class^={$generic}]
+              flex-grow: none
         else if $hasMax == true
           $max = unit( $max, $media-unit )
           @media ( max-width: $max )
             -compose-omega( $b )
+            .col[class^={$generic}]
+              flex-grow: none
 
       for $i in 1..$columns
         if $hasMin == true and $hasMax == true

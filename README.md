@@ -2,7 +2,9 @@
 
 A framework generator based on the ideas of atomic-css, but without the incomprehensible syntax. However, this tool is flexible enough to generate most kinds of css frameworks with a bit a fiddling around.
 
-pass in a config object, get a different grid. composure-grid makes it easy to add and remove grid functionality as you need it, with lightweight output that won't slow down your site.
+Pass in a config object, get a different grid. Composure makes it easy to add and remove grid functionality as you need it, with lightweight atomic output that won't slow down your site. Great for use in production (the WIRED preset is more or less what WIRED uses) or even just for rapid prototyping.
+
+Another perk - since the actual css is dynamically generated maintenance is easy. Need to change some global variables, or media queries? Just update the properties in the config object and you're good to go, no weird bower or npm workarounds or manual overrides needed.
 
 
 ![yodawg](https://i.imgflip.com/sig5d.jpg)

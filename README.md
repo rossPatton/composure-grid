@@ -1,12 +1,5 @@
 # composure
 
-A framework generator based on the ideas of atomic-css, but without the incomprehensible syntax. However, this tool is flexible enough to generate most kinds of css frameworks with a bit a fiddling around.
-
-Pass in a config object, get a different grid. Composure makes it easy to add and remove grid functionality as you need it, with lightweight atomic output that won't slow down your site. Great for use in production (the WIRED preset is more or less what WIRED uses) or even just for rapid prototyping.
-
-Another perk - since the actual css is dynamically generated maintenance is easy. Need to change some global variables, or media queries? Just update the properties in the config object and you're good to go, no weird bower or npm workarounds or manual overrides needed.
-
-
 ![yodawg](https://i.imgflip.com/sig5d.jpg)
 
 do this:
@@ -18,8 +11,31 @@ get this:
 
 ![composure-grid](https://cloud.githubusercontent.com/assets/2379901/10570762/4ac2a6bc-75ec-11e5-960f-74199112cdf8.png)
 
+A framework generator based on the ideas of atomic-css, but without the incomprehensible syntax. Flexible enough to generate most kinds of css frameworks with a bit a fiddling around.
 
-until I have more time to write some documentation, here's all the possible options with their defaults (if you don't pass in a value, the defaults will be applied):
+Pass in a config object, get a different grid. Composure makes it easy to add and remove grid functionality as you need it, with lightweight atomic output that won't slow down your site. Great for use in production (the WIRED preset is more or less what WIRED uses) or even just for rapid prototyping.
+
+Another perk - since the actual css is dynamically generated maintenance is easy. Need to change some global variables, or media queries? Just update the properties in the config object and you're good to go, no weird bower or npm workarounds or manual overrides needed.
+
+All options set here via the global config get set as global stylus vavriables. I also throw in a few mixins/extends. Feel free to override / use them as needed, although you shouldn't really need to do this (just change the config!).
+
+### Presets
+Composure comes with a few default grid presets. All of them are mobile first, and support flexbox by default (with helper classes for re-ordering, row direction, etc). 
+
+`simple` is the default grid. If you don't pass in a config object or specify a different preset, simple's defaults will be used. `simple` is a 12 column, mobile first grid, with 3 breakpoints (mobile, tablet, desktop). There are no pushes or pulls, but there are omega classes. It also includes a basic margin and padding gutter system. It's a whopping 7kb, and I've some variation of this scheme in production for a long time. It's awesome.
+
+`WIRED` is based on the grid I put together at WIRED. It's a slightly more complicated version of simple. It has 18 columsn instead of 12. It has 4 breakpoints  (mobile, tablet, desktop, and wide). All breakpoints except wide have maxes instead of just mins, and it has a slightly more extensive gutter system that is the exact one used by WIRED (8, 16, 32, 64).
+
+`bootstrap` is based on bootstrap 4 by twitter. It's basically a copy of their grid system - only you can override any aspect of it you don't like! It has 12 columns, 5 breakpoints, uses rems for media queries but not padding, and uses their class names and structure how you would expect. Also has pushes/pulls. No gutter system by default.
+
+`foundation` is based on foundation 5 by zurb. It's basically a copy of their grid system - only you can override any aspect of it you don't like! It has 12 columns, 5 breakpoints, uses rems for everything, and uses their class names and structure how you would expect. Also has pushes/pulls. No gutter system by default.
+
+More presets will come as I get to it, or if anyone wants to write one :)
+
+
+### Options
+Eventually I'd like to go through and create demos for all these options, but you can play around with them yourself:
+
 
 ```javascript
 'use strict'
@@ -35,6 +51,8 @@ gulp.task( 'stylus', function() {
     .pipe( stylus( {
       compress: false,
       use: composure( {
+      // no margin left, used with a left first spacer grid
+        alpha: false,
       // how many columns to generate
         columns: 12,
       // base column class
@@ -95,11 +113,14 @@ gulp.task( 'stylus', function() {
       // include omega classes for zeroing out column spacers
         omega: true,
       // the default preset, you don't need to pass this in
-      // the other current option is WIRED
-      // which is the grid used by wired.com
       // when you change a preset the defaults just change
       // you can still override them
+      // presets include WIRED style, bootstrap, foundation, with more coming maybe
         preset: 'simple',
+      // push classes for columns (tab-push-3 etc)
+        push: false,
+      // pull classes for columns (tab-pull-3 etc)
+        pull: false,
       // how wide the container class is
         siteWidth: 80,
       // should columns have default margin/padding? can be 'margin'|'padding'|false
@@ -108,9 +129,12 @@ gulp.task( 'stylus', function() {
         spacerAmount: 20,
       // include spacing on the bottom as well
         spacerBottom: true,
+      // what side of your columns do you want spacing:
+      // 'left' || 'right' || 'both'
+        spacerDirection: 'right',
       // the unit type of the spacer, can be whatever ('px'|'vw'|'rem'|'%' etc)
         spacerType: 'px',
-      // specifies unit type for siteWidth
+      // specifies unit type for siteWidth property
         widthType: '%',
       } ),
     } ) )

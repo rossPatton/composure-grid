@@ -72,11 +72,11 @@ compose-grid()
             -compose-columns( $b, $i, $isMobile )
   else
     for $i in 1..$columns
-      -compose-columns( $column-prefix, $i, false )
+      -compose-columns( '', $i, false )
 
 
 // by default, we don't generate mobile specfic classes
--compose-columns( $prefix, $i, $isMobile = false )
+-compose-columns( $breakpoint, $i, $isMobile = false )
   // i'm apparently using too many functions
   // and hitting a stack overflow when compiling
   // so, inlining the get-col-width function here
@@ -86,13 +86,16 @@ compose-grid()
   $has-spacer-val = $first-value + $third-value
   $no-spacer-val = unit( ( 100% / $columns ) * $i, '%' )
 
+  if $spacer == 'padding'
+    $has-spacer-val = $first-value
+
   if $spacer-type != '%'
-    $final-value = s( 'calc(%s + %s)', $first-value, $third-value )
+    $has-spacer-value = s( 'calc(%s + %s)', $first-value, $third-value )
 
   if $isMobile == true and $include-mobile == false
     return
   else
-    .{$prefix}-{$i}
+    .{$column-prefix}{$breakpoint}-{$i}
       width: $has-spacer ? $has-spacer-val : $no-spacer-val
 
       if $i == $columns
@@ -108,15 +111,15 @@ compose-grid()
             padding-left: 0
 
     if $column-push == true
-      .{$prefix}-push-{$i}
+      .{$column-prefix}{$breakpoint}-push-{$i}
         margin-left: $has-spacer ? $has-spacer-val : $no-spacer-val
 
     if $column-pull == true
-      .{$prefix}-pull-{$i}
+      .{$column-prefix}{$breakpoint}-pul-{$i}
         margin-right: $has-spacer ? $has-spacer-val : $no-spacer-val
 
     if $flexbox-order == true
-      .{$prefix}-order-{$i}
+      .{$column-prefix}{$breakpoint}-ord-{$i}
         order: $i
 
 
@@ -142,7 +145,7 @@ compose-grid()
 
   if $flexbox-order == true
     for $i in 1..$columns
-      .order-{$i}
+      .ord-{$i}
         order: $i
 
 

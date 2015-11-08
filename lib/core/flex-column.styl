@@ -48,8 +48,11 @@ compose-flex-column()
 
         if $spacer-dir == 'right'
           {$spacer}-right: $amount
-        else
+        else if $spacer-dir == 'left'
           {$spacer}-left: $amount
+        else if $spacer-dir == 'both'
+          {$spacer}-left: $amount
+          {$spacer}-right: $amount
 
   &:first-child
     if $spacer-dir == 'left'

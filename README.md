@@ -1,6 +1,11 @@
 # composure
 
-##### note, if you used 1.0->1.03 and got an error, it's because i've gotten used to using node 4 and forgot that not everyone is using arrow functions/template strings natively yet. update to 1.04 and try again :)
+A framework generator based on the ideas of atomic-css, but without the incomprehensible syntax. However, this tool is flexible enough to generate most kinds of css frameworks with a bit a fiddling around.
+
+Pass in a config object, get a different grid. Composure makes it easy to add and remove grid functionality as you need it, with lightweight atomic output that won't slow down your site. Great for use in production (the WIRED preset is more or less what WIRED uses) or even just for rapid prototyping.
+
+Another perk - since the actual css is dynamically generated maintenance is easy. Need to change some global variables, or media queries? Just update the properties in the config object and you're good to go, no weird bower or npm workarounds or manual overrides needed.
+
 
 ![yodawg](https://i.imgflip.com/sig5d.jpg)
 
@@ -14,10 +19,7 @@ get this:
 ![composure-grid](https://cloud.githubusercontent.com/assets/2379901/10570762/4ac2a6bc-75ec-11e5-960f-74199112cdf8.png)
 
 
-pass in a config object, get a different grid. composure-grid makes it easy to add and remove grid functionality as you need it, with lightweight output that won't slow down your site.
-
-
-until I have more time to write some documentation, here's all the possible options with their defaults:
+until I have more time to write some documentation, here's all the possible options with their defaults (if you don't pass in a value, the defaults will be applied):
 
 ```javascript
 'use strict'

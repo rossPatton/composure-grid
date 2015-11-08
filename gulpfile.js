@@ -12,8 +12,9 @@ var composure = require( './lib/composure-grid' )
 gulp.task( 'stylus', function() {
   return gulp.src( './lib/composure-grid.styl' )
     .pipe( stylus( {
-      compress: true,
+      compress: false,
       use: composure( {
+        alpha: false,
         columns: 12,
         columnBaseClass: 'col',
         columnPadding: false,
@@ -54,10 +55,13 @@ gulp.task( 'stylus', function() {
         mediaUnit: 'px',
         omega: true,
         preset: 'simple',
+        pull: true,
+        push: true,
         siteWidth: 80,
         spacer: 'margin',
         spacerAmount: 1,
         spacerBottom: true,
+        spacerDirection: 'right',
         spacerType: '%',
         widthType: '%',
       } ),

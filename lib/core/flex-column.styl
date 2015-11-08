@@ -43,13 +43,20 @@ compose-flex-column()
 
     if $mob-plus is defined
       @media $mob-plus
-        {$spacer}-right: $amount
-
-        if $flexbox-support != true
+        if $flexbox-support == false
           float: left
 
+        if $spacer-dir == 'right'
+          {$spacer}-right: $amount
+        else
+          {$spacer}-left: $amount
+
+  &:first-child
+    if $spacer-dir == 'left'
+      {$spacer}-left: 0
+
   &:last-child
-    if $spacer is defined
+    if $spacer-dir == 'right'
       {$spacer}-right: 0
 
 

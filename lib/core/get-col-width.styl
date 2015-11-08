@@ -1,3 +1,5 @@
+// @TODO not currently in use
+
 /**
  * @desc takes our gutter and total columns and builds us a grid
  * @note the -1 is there because browsers handle pixels different
@@ -6,7 +8,7 @@
  */
 get-col-width( $index, $has-spacer = false )
   // this should be cleaned up
-  if $has-space
+  if $has-spacer
     $first-value = ( 100% / $columns ) * $index
     $second-value = ($spacer-amount / ($columns / $index) - $spacer-amount) - 1
     $third-value = unit( $second-value, $spacer-type )
@@ -15,4 +17,4 @@ get-col-width( $index, $has-spacer = false )
       $final-value = s( 'calc(%s + %s)', $first-value, $third-value )
     return $final-value
   else
-    return unit( ( 100% / $columns ) * $index, '%' ) - .5
+    return unit( ( 100% / $columns ) * $index, '%' )

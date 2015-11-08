@@ -4,6 +4,7 @@
  * @param {number} [$columns] amount of columns in grid
  * @param {boolean} [$order] include flexbox re-order classes
  * @returns classes for grid
+ * @TODO could cut down on some repetition here
  */
 compose-grid()
   $has-spacer = false
@@ -22,6 +23,22 @@ compose-grid()
       $isMobile = $breakpoint['isMobile']
       $generic = $b + '-'
 
+      if $column-alpha == true
+        if $hasMin == true and $hasMax == true
+          $min = unit( $min, $media-unit )
+          $max = unit( $max, $media-unit )
+          $both = s( '( min-width: %s ) and ( max-width: %s )', $min, $max )
+          @media $both
+            -compose-alpha( $b )
+        else if $hasMin == true
+          $min = unit( $min, $media-unit )
+          @media ( min-width: $min )
+            -compose-alpha( $b )
+        else if $hasMax == true
+          $max = unit( $max, $media-unit )
+          @media ( max-width: $max )
+            -compose-alpha( $b )
+
       if $column-omega == true
         if $hasMin == true and $hasMax == true
           $min = unit( $min, $media-unit )
@@ -29,20 +46,14 @@ compose-grid()
           $both = s( '( min-width: %s ) and ( max-width: %s )', $min, $max )
           @media $both
             -compose-omega( $b )
-            .col[class^={$generic}]
-              flex-grow: none
         else if $hasMin == true
           $min = unit( $min, $media-unit )
           @media ( min-width: $min )
             -compose-omega( $b )
-            .col[class^={$generic}]
-              flex-grow: none
         else if $hasMax == true
           $max = unit( $max, $media-unit )
           @media ( max-width: $max )
             -compose-omega( $b )
-            .col[class^={$generic}]
-              flex-grow: none
 
       for $i in 1..$columns
         if $hasMin == true and $hasMax == true
@@ -66,17 +77,43 @@ compose-grid()
 
 // by default, we don't generate mobile specfic classes
 -compose-columns( $prefix, $i, $isMobile = false )
+  // i'm apparently using too many functions
+  // and hitting a stack overflow when compiling
+  // so, inlining the get-col-width function here
+  $first-value = ( 100% / $columns ) * $i
+  $second-value = ($spacer-amount / ($columns / $i) - $spacer-amount)
+  $third-value = unit( $second-value, $spacer-type )
+  $has-spacer-val = $first-value + $third-value
+  $no-spacer-val = unit( ( 100% / $columns ) * $i, '%' )
+
+  if $spacer-type != '%'
+    $final-value = s( 'calc(%s + %s)', $first-value, $third-value )
+
   if $isMobile == true and $include-mobile == false
     return
   else
     .{$prefix}-{$i}
-      width: get-col-width( $i, $has-spacer )
+      width: $has-spacer ? $has-spacer-val : $no-spacer-val
 
       if $i == $columns
-        if $spacer == 'margin'
-          margin-right: 0
+        if $spacer-dir == 'right'
+          if $spacer == 'margin'
+            margin-right: 0
+          else
+            padding-right: 0
         else
-          padding-right: 0
+          if $spacer == 'margin'
+            margin-left: 0
+          else
+            padding-left: 0
+
+    if $column-push == true
+      .{$prefix}-push-{$i}
+        margin-left: $has-spacer ? $has-spacer-val : $no-spacer-val
+
+    if $column-pull == true
+      .{$prefix}-pull-{$i}
+        margin-right: $has-spacer ? $has-spacer-val : $no-spacer-val
 
     if $flexbox-order == true
       .{$prefix}-order-{$i}
@@ -109,6 +146,16 @@ compose-grid()
         order: $i
 
 
+// remove margin left from a column for flow purposes
+-compose-alpha( $prefix )
+  .{$prefix}-alpha
+    if $spacer == 'margin'
+      margin-left: 0 !important
+    else
+      padding-left: 0 !important
+
+
+// remove margin right from a column for flow purposes
 -compose-omega( $prefix )
   .{$prefix}-omega
     if $spacer == 'margin'

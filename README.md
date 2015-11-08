@@ -22,13 +22,17 @@ All options set here via the global config get set as global stylus vavriables. 
 ### Presets
 Composure comes with a few default grid presets. All of them are mobile first, and support flexbox by default (with helper classes for re-ordering, row direction, etc). 
 
-`simple` is the default grid. If you don't pass in a config object or specify a different preset, simple's defaults will be used. `simple` is a 12 column, mobile first grid, with 3 breakpoints (mobile, tablet, desktop). There are no pushes or pulls, but there are omega classes. It also includes a basic margin and padding gutter system. It's a whopping 7kb, and I've some variation of this scheme in production for a long time. It's awesome.
+#### simple
+is the default grid. If you don't pass in a config object or specify a different preset, simple's defaults will be used. `simple` is a 12 column, mobile first grid, with 3 breakpoints (mobile, tablet, desktop). There are no pushes or pulls, but there are omega classes. It also includes a basic margin and padding gutter system. It's a whopping 7kb, and I've some variation of this scheme in production for a long time. It's awesome.
 
-`WIRED` is based on the grid I put together at WIRED. It's a slightly more complicated version of simple. It has 18 columsn instead of 12. It has 4 breakpoints  (mobile, tablet, desktop, and wide). All breakpoints except wide have maxes instead of just mins, and it has a slightly more extensive gutter system that is the exact one used by WIRED (8, 16, 32, 64).
+#### WIRED
+is based on the grid I put together at WIRED. It's a slightly more complicated version of simple. It has 18 columsn instead of 12. It has 4 breakpoints  (mobile, tablet, desktop, and wide). All breakpoints except wide have maxes instead of just mins, and it has a slightly more extensive gutter system that is the exact one used by WIRED (8, 16, 32, 64).
 
-`bootstrap` is based on bootstrap 4 by twitter. It's basically a copy of their grid system - only you can override any aspect of it you don't like! It has 12 columns, 5 breakpoints, uses rems for media queries but not padding, and uses their class names and structure how you would expect. Also has pushes/pulls. No gutter system by default.
+#### bootstrap
+is based on bootstrap 4 by twitter. It's basically a copy of their grid system - only you can override any aspect of it you don't like! It has 12 columns, 5 breakpoints, uses rems for media queries but not padding, and uses their class names and structure how you would expect. Also has pushes/pulls. No gutter system by default.
 
-`foundation` is based on foundation 5 by zurb. It's basically a copy of their grid system - only you can override any aspect of it you don't like! It has 12 columns, 5 breakpoints, uses rems for everything, and uses their class names and structure how you would expect. Also has pushes/pulls. No gutter system by default.
+#### foundation
+is based on foundation 5 by zurb. It's basically a copy of their grid system - only you can override any aspect of it you don't like! It has 12 columns, 5 breakpoints, uses rems for everything, and uses their class names and structure how you would expect. Also has pushes/pulls. No gutter system by default.
 
 More presets will come as I get to it, or if anyone wants to write one :)
 

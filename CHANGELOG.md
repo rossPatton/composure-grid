@@ -1,3 +1,7 @@
+### 1.1.1
+
+just updating docs and package.json info
+
 ### 1.1.0
 
 add options for push and pull classes

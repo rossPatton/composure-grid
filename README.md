@@ -11,7 +11,7 @@ get this:
 
 ![composure-grid](https://cloud.githubusercontent.com/assets/2379901/10570762/4ac2a6bc-75ec-11e5-960f-74199112cdf8.png)
 
-Composure makes it easy to add and remove grid functionality as you need it, with lightweight atomic output that won't slow down your site A framework generator based on the ideas of atomic-css, but without the incomprehensible bullshit syntax. Composure gives you a css system where each class does one little thing - and that's it. No cascading bullshit, and still flexible enough to generate most kinds of css frameworks with a bit a fiddling around.
+Composure makes it easy to add and remove grid functionality as you need it, with lightweight atomic output that won't slow down your site. Composure gives you a css system where each class does one little thing - and that's it. Based on the ideas of atomic-css, but without the incomprehensible syntax. No cascading bullshit, and still flexible enough to generate most kinds of css frameworks with a bit a fiddling around.
 
 By passing in a config object, you generate a different grid and gutter system. Great for use in production (the WIRED preset is more or less what WIRED uses) or even just for rapid prototyping.
 
